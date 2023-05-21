@@ -29,5 +29,12 @@ pipeline{
                 }
             }
         }
+        stage('Deploy to kubernetes Cluster'){
+            steps{
+                script{
+                    kubernetesDeploy (configs: 'deployment-jenkins-test.yaml', kubeconfigId: 'kubernetes_deploy_config')
+                }
+            }
+        }
     }
 }
