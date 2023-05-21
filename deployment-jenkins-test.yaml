@@ -33,3 +33,18 @@ spec:
       port: 8080 # The port that the service is running on in the cluster
       targetPort: 8080 # The port exposed by the service
   type: NodePort # type of the service.
+---
+apiVersion: v1
+kind: Ingress
+metadata:
+  name: hello-world
+  annotations:
+    kubernetes.io/ingress.class: ingress-nginx
+spec:
+  rules:
+    - host: jenkins-test
+      http:
+        paths:
+          - backend:
+              serviceName: jenkins-test-k8s-svc
+              servicePort: 8080
